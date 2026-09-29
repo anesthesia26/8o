@@ -3,538 +3,636 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مركز الشمس البيطري - النظام الإداري والعيادة</title>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <title>نظام مركز الشمس البيطري</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #107c41;
-      --primary-dark: #0b592e;
-      --secondary: #e67e22;
-      --bg: #f4f7f6;
-      --card-bg: #ffffff;
-      --text: #2c3e50;
-      --text-muted: #7f8c8d;
-      --border: #e2e8f0;
-      --danger: #e74c3c;
+      --glass-bg: rgba(255, 255, 255, 0.72);
+      --glass-card: rgba(255, 255, 255, 0.62);
+      --glass-border: rgba(255, 255, 255, 0.55);
+      --glass-hover: rgba(255, 255, 255, 0.85);
+      --glass-shadow: 0 12px 35px 0 rgba(31, 38, 135, 0.08);
+      
+      --brand-primary: #047857;
+      --brand-accent: #059669;
+      --brand-amber: #d97706;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border-subtle: rgba(226, 232, 240, 0.8);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Tajawal', sans-serif;
+      font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     body {
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      padding-bottom: 50px;
-    }
-
-    header {
-      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-      color: white;
-      padding: 24px 20px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-
-    .badge-demo {
-      display: inline-block;
-      background: var(--secondary);
-      color: white;
-      padding: 3px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    header h1 {
-      font-size: 1.6rem;
-      margin-bottom: 4px;
-    }
-
-    header p {
-      font-size: 0.95rem;
-      opacity: 0.9;
-    }
-
-    .nav-tabs {
+      background: radial-gradient(circle at 10% 20%, rgba(209, 250, 229, 0.6) 0%, transparent 40%),
+                  radial-gradient(circle at 90% 80%, rgba(254, 243, 199, 0.6) 0%, transparent 40%),
+                  #f1f5f9;
+      color: var(--text-main);
+      min-height: 100vh;
       display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin: 20px auto;
-      max-width: 900px;
-      padding: 0 16px;
+      flex-direction: column;
     }
 
-    .nav-btn {
-      flex: 1;
-      padding: 12px;
-      background: white;
-      border: 2px solid var(--border);
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      color: var(--text);
-      transition: all 0.2s ease;
+    /* Glass Navigation Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
     }
 
-    .nav-btn.active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-      box-shadow: 0 4px 8px rgba(16, 124, 65, 0.25);
-    }
-
-    .container {
-      max-width: 1000px;
+    .nav-container {
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 0 16px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
     }
 
-    .tab-content {
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #10b981, #047857);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.4rem;
+      box-shadow: 0 6px 14px rgba(4, 120, 87, 0.25);
+    }
+
+    .brand-text h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #064e3b;
+    }
+
+    .brand-text p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      background: rgba(241, 245, 249, 0.7);
+      padding: 5px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .nav-link {
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-link.active {
+      background: #ffffff;
+      color: var(--brand-primary);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Page Container */
+    main {
+      flex: 1;
+      max-width: 1200px;
+      width: 100%;
+      margin: 25px auto;
+      padding: 0 20px;
+    }
+
+    .page-section {
       display: none;
+      animation: fadeIn 0.3s ease forwards;
     }
 
-    .tab-content.active {
+    .page-section.active {
       display: block;
     }
 
-    .card {
-      background: var(--card-bg);
-      border-radius: 14px;
-      padding: 20px;
-      border: 1px solid var(--border);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      margin-bottom: 20px;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* POS & Inventory Grid */
-    .pos-layout {
+    /* Glass Cards */
+    .glass-card {
+      background: var(--glass-card);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--glass-shadow);
+      margin-bottom: 24px;
+    }
+
+    /* Layout Grids */
+    .pos-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
+      grid-template-columns: 1.8fr 1.2fr;
+      gap: 24px;
     }
 
-    @media (min-width: 768px) {
-      .pos-layout {
-        grid-template-columns: 1.6fr 1fr;
+    @media (max-width: 900px) {
+      .pos-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-container {
+        flex-direction: column;
       }
     }
 
     .items-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 12px;
-      margin-top: 15px;
+      grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
     }
 
-    .item-card {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px;
-      text-align: center;
-      background: #fafafa;
+    .item-glass {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 16px;
+      padding: 16px;
       cursor: pointer;
-      transition: 0.2s;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .item-card:hover {
-      border-color: var(--primary);
-      background: #f0fdf4;
+    .item-glass:hover {
+      background: var(--glass-hover);
+      transform: translateY(-3px);
+      border-color: #6ee7b7;
+      box-shadow: 0 10px 20px rgba(5, 150, 105, 0.08);
     }
 
     .item-title {
       font-weight: 700;
       font-size: 0.95rem;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .item-cat {
       font-size: 0.75rem;
-      color: var(--text-muted);
+      color: #64748b;
+      margin-bottom: 12px;
     }
 
     .item-price {
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 700;
-      color: var(--primary);
-      margin: 6px 0;
+      font-size: 1.05rem;
+      color: var(--brand-primary);
     }
 
-    .stock-badge {
-      display: inline-block;
-      font-size: 0.75rem;
-      padding: 2px 8px;
-      border-radius: 6px;
-      background: #e2e8f0;
-    }
-
-    .cart-box {
-      border: 2px dashed var(--border);
-      border-radius: 12px;
-      padding: 15px;
-    }
-
-    .cart-table {
+    /* Form Fields */
+    .input-field {
       width: 100%;
-      border-collapse: collapse;
-      margin: 15px 0;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(203, 213, 225, 0.8);
+      border-radius: 12px;
+      padding: 12px 14px;
       font-size: 0.9rem;
+      color: var(--text-main);
+      outline: none;
+      transition: 0.2s;
+      margin-top: 6px;
     }
 
-    .cart-table th, .cart-table td {
-      padding: 8px;
-      border-bottom: 1px solid var(--border);
+    .input-field:focus {
+      background: #ffffff;
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+    }
+
+    /* Custom Tables */
+    .styled-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: 14px;
+    }
+
+    .styled-table th {
+      padding: 12px 14px;
+      background: rgba(241, 245, 249, 0.6);
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.82rem;
       text-align: right;
     }
 
-    .cart-total {
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: var(--primary-dark);
-      text-align: left;
-      margin-top: 10px;
-    }
-
-    .btn {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 10px;
-      font-weight: 700;
-      cursor: pointer;
-      font-size: 0.95rem;
-      transition: 0.2s;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: var(--primary-dark);
-    }
-
-    .btn-secondary {
-      background: var(--secondary);
-      color: white;
-      margin-top: 8px;
-    }
-
-    /* Forms */
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 700;
+    .styled-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.6);
       font-size: 0.9rem;
     }
 
-    .form-control {
+    .styled-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Action Buttons */
+    .action-btn {
       width: 100%;
-      padding: 10px 12px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      font-weight: 700;
       font-size: 0.95rem;
-      background: #fff;
-    }
-
-    textarea.form-control {
-      min-height: 80px;
-      resize: vertical;
-    }
-
-    /* Print Preview */
-    .report-paper {
-      background: white;
-      border: 2px solid #ccc;
-      padding: 25px;
-      border-radius: 10px;
-      margin-top: 20px;
-    }
-
-    .report-header {
-      border-bottom: 2px solid var(--primary);
-      padding-bottom: 12px;
-      margin-bottom: 15px;
+      cursor: pointer;
+      transition: all 0.2s ease;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
 
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 0.85rem;
+    .btn-green {
+      background: linear-gradient(135deg, #059669, #047857);
+      color: white;
+      box-shadow: 0 8px 16px rgba(4, 120, 87, 0.2);
+    }
+
+    .btn-green:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid #cbd5e1;
       color: var(--text-muted);
+      margin-top: 8px;
     }
 
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .badge-ok { background: #dcfce7; color: #166534; }
+    .badge-warn { background: #fef3c7; color: #92400e; }
+    .badge-danger { background: #fee2e2; color: #991b1b; }
+
+    /* Print Document Container */
+    #printDocument {
+      display: none;
+    }
+
+    /* PRINT SPECIFIC STYLES */
     @media print {
-      body * {
-        visibility: hidden;
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
       }
-      #printArea, #printArea * {
-        visibility: visible;
+
+      /* Hide entire UI */
+      header, main, footer, .nav-container, .glass-card, .pos-grid {
+        display: none !important;
       }
-      #printArea {
+
+      /* Force print sheet visible */
+      #printDocument {
+        display: block !important;
         position: absolute;
-        left: 0;
         top: 0;
+        left: 0;
         width: 100%;
-        border: none;
+        margin: 0;
+        padding: 20px;
+        background: #ffffff;
+      }
+
+      .print-box {
+        border: 2px solid #047857;
+        padding: 25px;
+        border-radius: 8px;
+      }
+
+      .print-header {
+        border-bottom: 2px solid #047857;
+        padding-bottom: 12px;
+        margin-bottom: 16px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .print-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+      }
+
+      .print-table th, .print-table td {
+        border: 1px solid #94a3b8;
+        padding: 8px 10px;
+        text-align: right;
+      }
+
+      .print-table th {
+        background-color: #f1f5f9 !important;
+        -webkit-print-color-adjust: exact;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- Glass Navbar -->
   <header>
-    <span class="badge-demo">نسخة تجريبية (Demo)</span>
-    <h1>مركز الشمس البيطري</h1>
-    <p>بإشراف: د. زينب حرز الدين | رعاية بيطرية متخصصة للدواجن والطيور</p>
+    <div class="nav-container">
+      <div class="brand-wrap">
+        <div class="brand-logo">☀️</div>
+        <div class="brand-text">
+          <h1>مركز الشمس البيطري</h1>
+          <p>د. زينب حرز الدين • رعاية متخصصة للدواجن والطيور</p>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#pos" class="nav-link active" onclick="navigate('pos', event)">
+          <span>🛒</span> الكاشير والمبيعات
+        </a>
+        <a href="#lab" class="nav-link" onclick="navigate('lab', event)">
+          <span>🔬</span> تقارير الفحص والتشريح
+        </a>
+        <a href="#inventory" class="nav-link" onclick="navigate('inventory', event)">
+          <span>📦</span> المخزون والصلاحيات
+        </a>
+      </nav>
+    </div>
   </header>
 
-  <div class="nav-tabs">
-    <button class="nav-btn active" onclick="switchTab('pos')">🛒 الكاشير والمبيعات</button>
-    <button class="nav-btn" onclick="switchTab('lab')">🔬 تقارير الفحص والتشريح</button>
-    <button class="nav-btn" onclick="switchTab('stock')">📦 جرد الأدوية واللقاحات</button>
-  </div>
-
-  <div class="container">
-
-    <!-- TAB 1: POS & Sales -->
-    <div id="posTab" class="tab-content active">
-      <div class="pos-layout">
-        <div class="card">
-          <h3>قائمة الأدوية والمستلزمات السريعة</h3>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">انقر على المادة لإضافتها إلى فاتورة المراجع/الحقل</p>
-          <div class="items-grid" id="itemsContainer"></div>
+  <main>
+    <!-- PAGE 1: POS / CASHIER -->
+    <section id="page-pos" class="page-section active">
+      <div class="pos-grid">
+        <div class="glass-card">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <h2 style="font-size:1.15rem; font-weight:800;">الأدوية واللقاحات السريعة</h2>
+              <p style="font-size:0.8rem; color:var(--text-muted);">انقر على المادة لإضافتها المباشرة لقائمة البيع</p>
+            </div>
+            <span style="font-size:0.75rem; background:#ecfdf5; color:#047857; padding:4px 10px; border-radius:8px; font-weight:700;">متصل بالسيرفر المحلي</span>
+          </div>
+          <div class="items-grid" id="posItemsList"></div>
         </div>
 
-        <div class="card">
-          <h3>فاتورة المبيعات</h3>
-          <div class="form-group" style="margin-top: 10px;">
-            <input type="text" id="custName" class="form-control" placeholder="اسم صاحب الحقل / المراجع">
-          </div>
-          <div class="cart-box">
-            <table class="cart-table">
-              <thead>
-                <tr>
-                  <th>المادة</th>
-                  <th>العدد</th>
-                  <th>السعر</th>
-                </tr>
-              </thead>
-              <tbody id="cartItems">
-                <tr><td colspan="3" style="text-align:center; color:#999;">السلة فارغة</td></tr>
-              </tbody>
-            </table>
-            <div class="cart-total">المجموع: <span id="totalSum">0</span> د.ع</div>
-          </div>
-          <button class="btn btn-primary" style="margin-top: 15px;" onclick="printBill()">🖨️ طباعة الفاتورة</button>
-          <button class="btn btn-secondary" onclick="clearCart()">تفريغ السلة</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- TAB 2: Lab / Necropsy Report -->
-    <div id="labTab" class="tab-content">
-      <div class="card">
-        <h3>إصدار تقرير تشخيص / فحص مختبري وتشريح دواجن</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">يتم توليد تقرير رسمي جاهز للطباعة أو الإرسال للمربي عبر واتساب</p>
-        
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-          <div class="form-group">
-            <label>اسم المربي / الحقل:</label>
-            <input type="text" id="farmOwner" class="form-control" value="حقل الهدى للدواجن">
-          </div>
-          <div class="form-group">
-            <label>نوع الطير / القطيع:</label>
-            <input type="text" id="birdType" class="form-control" value="فروج لحم (Ross 308)">
-          </div>
-          <div class="form-group">
-            <label>العمر والعدد التقريبي:</label>
-            <input type="text" id="flockAge" class="form-control" value="العمر: 22 يوم | العدد: 5,000">
-          </div>
-          <div class="form-group">
-            <label>نسبة الهلاكات اليومية:</label>
-            <input type="text" id="mortality" class="form-control" value="25 طير / يوم">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>العلامات السريرية والآفات التشريحية (PM Lesions):</label>
-          <textarea id="lesions" class="form-control">احتقان في القصبة الهوائية، تضخم الكبد مع بقع نخرية، وجود إفرازات في الأكياس الهوائية (اشتباه إصابة تنفسية معقدة CRD/E.Coli).</textarea>
-        </div>
-
-        <div class="form-group">
-          <label>التشخيص الأولي / الفحوصات المختبرية:</label>
-          <input type="text" id="diagnosis" class="form-control" value="إصابة تنفسية بكتيرية ثانوية (Colibacillosis)">
-        </div>
-
-        <div class="form-group">
-          <label>الخطة العلاجية والجرعة الموصى بها:</label>
-          <textarea id="treatment" class="form-control">1. دوكسي سايكلين + كولستين في ماء الشرب لمدة 4 أيام متتالية.
-2. رافع مناعة وفيتامينات (AD3E) لمدة 3 أيام بعد المضاد.
-3. تحسين التهوية وتقليل الرطوبة في القاعة.</textarea>
-        </div>
-
-        <button class="btn btn-primary" onclick="generateReport()">📄 معاينة وطباعة التقرير الرسمي</button>
-      </div>
-
-      <div id="printArea" class="report-paper" style="display: none;">
-        <div class="report-header">
+        <div class="glass-card">
+          <h2 style="font-size:1.15rem; font-weight:800; margin-bottom:14px;">فاتورة المبيعات الحالية</h2>
           <div>
-            <h2 style="color: var(--primary);">مركز الشمس البيطري ☀️</h2>
-            <p><strong>د. زينب حرز الدين</strong> - رعاية بيطرية متخصصة للدواجن والطيور</p>
-            <p style="font-size: 0.8rem;">هاتف: 07866961140 | تشريح - فحوصات مختبرية - لقاحات</p>
+            <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">المراجع / صاحب الحقل</label>
+            <input type="text" id="billCustomer" class="input-field" placeholder="مثال: حقل الفرات للدواجن">
           </div>
-          <div style="text-align: left; font-size: 0.85rem;">
-            <p>التاريخ: <span id="repDate"></span></p>
-            <p>رقم التقرير: #VET-<span id="repId"></span></p>
+
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>المادة</th>
+                <th>الكمية</th>
+                <th>السعر</th>
+                <th>إلغاء</th>
+              </tr>
+            </thead>
+            <tbody id="cartTableBody">
+              <tr><td colspan="4" style="text-align:center; color:#94a3b8; padding:30px;">الفاتورة فارغة</td></tr>
+            </tbody>
+          </table>
+
+          <div style="margin:20px 0; padding:15px; background:rgba(255,255,255,0.7); border-radius:12px; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-weight:700; color:var(--text-muted);">المجموع النهائي:</span>
+            <span id="billGrandTotal" style="font-size:1.4rem; font-weight:800; color:var(--brand-primary); font-family:'Plus Jakarta Sans', sans-serif;">0 د.ع</span>
           </div>
-        </div>
 
-        <h3 style="text-align: center; margin: 15px 0; text-decoration: underline;">تقرير فحص وتشريح بيطري</h3>
-
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 0.9rem;">
-          <tr>
-            <td style="padding: 6px; border: 1px solid #ddd;"><strong>المربي / الحقل:</strong> <span id="rOwner"></span></td>
-            <td style="padding: 6px; border: 1px solid #ddd;"><strong>نوع القطيع:</strong> <span id="rBird"></span></td>
-          </tr>
-          <tr>
-            <td style="padding: 6px; border: 1px solid #ddd;"><strong>العمر والعدد:</strong> <span id="rAge"></span></td>
-            <td style="padding: 6px; border: 1px solid #ddd;"><strong>الهلاكات:</strong> <span id="rMort"></span></td>
-          </tr>
-        </table>
-
-        <div style="margin-bottom: 12px;">
-          <strong>نتائج الصفة التشريحية:</strong>
-          <p id="rLesions" style="background:#f9f9f9; padding:10px; border-radius:6px; margin-top:4px; font-size: 0.9rem;"></p>
-        </div>
-
-        <div style="margin-bottom: 12px;">
-          <strong>التشخيص النهائي:</strong>
-          <p id="rDiag" style="font-weight: bold; color: var(--primary-dark); font-size: 1rem;"></p>
-        </div>
-
-        <div style="margin-bottom: 20px;">
-          <strong>البرنامج العلاجي المقترح:</strong>
-          <p id="rTreat" style="background:#f0fdf4; padding:10px; border-radius:6px; white-space: pre-line; margin-top:4px; font-size: 0.9rem;"></p>
-        </div>
-
-        <div style="display: flex; justify-content: space-between; margin-top: 30px; border-top: 1px solid #eee; padding-top: 15px;">
-          <div>ختم وتوقيع الطبيب البيطري</div>
-          <div><strong>د. زينب حرز الدين</strong></div>
+          <button class="action-btn btn-green" onclick="printReceipt()">
+            <span>🖨️</span> طباعة الفاتورة والإيصال
+          </button>
+          <button class="action-btn btn-ghost" onclick="resetCart()">تفريغ الفاتورة</button>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- TAB 3: Inventory / Stock -->
-    <div id="stockTab" class="tab-content">
-      <div class="card">
-        <h3>جرد المخزن وتنبيهات الصلاحية (نظام حماية اللقاحات)</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">متابعة فورية للكميات وتواريخ انتهاء الصلاحية لتجنب تلف الأدوية واللقاحات</p>
-        
-        <table class="cart-table">
+    <!-- PAGE 2: LAB & NECROPSY REPORT -->
+    <section id="page-lab" class="page-section">
+      <div class="glass-card">
+        <h2 style="font-size:1.2rem; font-weight:800; margin-bottom:4px;">استمارة فحص سريري وتشريح قطيع</h2>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:20px;">توليد تقرير تشريحي رسمي وموثق للطبيب والمربي</p>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:16px;">
+          <div>
+            <label style="font-size:0.8rem; font-weight:700;">اسم الحقل / المربي:</label>
+            <input type="text" id="lpOwner" class="input-field" value="حقل السلام لتربية الدواجن">
+          </div>
+          <div>
+            <label style="font-size:0.8rem; font-weight:700;">نوع وسلالة القطيع:</label>
+            <input type="text" id="lpBreed" class="input-field" value="فروج لحم - Ross 308">
+          </div>
+          <div>
+            <label style="font-size:0.8rem; font-weight:700;">العمر والعدد الإجمالي:</label>
+            <input type="text" id="lpAge" class="input-field" value="العمر: 24 يوم | العدد: 7,000">
+          </div>
+          <div>
+            <label style="font-size:0.8rem; font-weight:700;">نسبة الهلاكات اليومية:</label>
+            <input type="text" id="lpMortality" class="input-field" value="38 طير / اليوم">
+          </div>
+        </div>
+
+        <div style="margin-top:16px;">
+          <label style="font-size:0.8rem; font-weight:700;">الآفات التشريحية والصفة العيانية (PM Lesions):</label>
+          <textarea id="lpLesions" class="input-field" style="min-height:90px; resize:vertical;">احتقان شديد بالأكياس الهوائية مع ترسبات فيبرينية، تضخم الكبد وتورم الكليتين مع ترسبات يورات (اشتباه إصابة تنفسية معقدة CRD مترافقة مع كولاي).</textarea>
+        </div>
+
+        <div style="margin-top:16px;">
+          <label style="font-size:0.8rem; font-weight:700;">التشخيص البيطري المبدئي:</label>
+          <input type="text" id="lpDiag" class="input-field" value="Colibacillosis with Mycoplasma Gallisepticum Complication">
+        </div>
+
+        <div style="margin-top:16px;">
+          <label style="font-size:0.8rem; font-weight:700;">البروتوكول العلاجي والإرشادات الوقائية:</label>
+          <textarea id="lpTherapy" class="input-field" style="min-height:90px; resize:vertical;">1. دوكسي سايكلين 50% + كولستين سلفات لمدة 4 أيام في مياه الشرب.
+2. استخدام موسع قصبات ومقشع مع رفع كفاءة التهوية وتعديل درجات حرارة الحاضنة.
+3. رافع مناعة وأملاح كلوية فور انتهاء كورس المضاد لمدة 48 ساعة.</textarea>
+        </div>
+
+        <div style="margin-top:24px; display:flex; gap:12px;">
+          <button class="action-btn btn-green" style="max-width:320px;" onclick="printMedicalReport()">
+            <span>📄</span> طباعة التقرير البيطري الرسمي
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 3: INVENTORY -->
+    <section id="page-inventory" class="page-section">
+      <div class="glass-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+          <div>
+            <h2 style="font-size:1.2rem; font-weight:800;">سجل الرقابة الدوائية واللقاحات</h2>
+            <p style="font-size:0.85rem; color:var(--text-muted);">متابعة المخزن التلقائية وتنبيهات تاريخ النفاذ</p>
+          </div>
+          <button class="action-btn btn-ghost" style="width:auto; padding:8px 16px;">+ مادة دوائية جديدة</button>
+        </div>
+
+        <table class="styled-table">
           <thead>
             <tr>
-              <th>المادة البيطرية</th>
+              <th>اسم المادة الطبية</th>
               <th>التصنيف</th>
-              <th>المخزون المتوفر</th>
+              <th>الرصيد المتاح</th>
               <th>تاريخ الصلاحية</th>
-              <th>الحالة</th>
+              <th>الحالة المخزنية</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>لقاح نيوكاسل + كلوستريديوم (1000 جرعة)</td>
-              <td>لقاحات مبردة</td>
-              <td>45 قنينة</td>
-              <td>2027/02</td>
-              <td><span style="color:green; font-weight:700;">سليم</span></td>
+              <td><strong>لقاح جمبورو عترة متوسطة</strong></td>
+              <td>لقاحات بيطرية مبردة</td>
+              <td>42 قنينة</td>
+              <td>2027/04</td>
+              <td><span class="badge badge-ok">آمن وسليم</span></td>
             </tr>
             <tr>
-              <td>مضاد حيوي تايلوزين 100 غم</td>
-              <td>علاجات تنفسية</td>
-              <td>12 علبة</td>
+              <td><strong>مضاد تنفسي تايلوزين تارترات</strong></td>
+              <td>مضادات حيوية نقية</td>
+              <td>9 علب فقط</td>
               <td>2026/11</td>
-              <td><span style="color:orange; font-weight:700;">قريب الانتهاء</span></td>
+              <td><span class="badge badge-warn">قريب انتهاء الصلاحية</span></td>
             </tr>
             <tr>
-              <td>فيتامين AD3E + زنك مركز (1 لتر)</td>
-              <td>فيتامينات ومكملات</td>
-              <td>8 لتر</td>
-              <td>2027/08</td>
-              <td><span style="color:green; font-weight:700;">سليم</span></td>
+              <td><strong>فيتامين AD3E + زنك مركز</strong></td>
+              <td>مكملات وفيتامينات</td>
+              <td>16 لتر</td>
+              <td>2027/09</td>
+              <td><span class="badge badge-ok">آمن وسليم</span></td>
             </tr>
             <tr>
-              <td>مضاد سموم فطرية عضوي (Toxin Binder)</td>
-              <td>إضافات علفية</td>
-              <td>2 كيس فقط</td>
-              <td>2027/05</td>
-              <td><span style="color:red; font-weight:700;">نقص مخزون (إعادة طلب)</span></td>
+              <td><strong>تولترازوريل 2.5% (مضاد كوكسيديا)</strong></td>
+              <td>علاجات طفيلية ومعوية</td>
+              <td>3 عبوات</td>
+              <td>2027/02</td>
+              <td><span class="badge badge-danger">نقص مخزون حاد</span></td>
             </tr>
           </tbody>
         </table>
       </div>
-    </div>
+    </section>
+  </main>
 
+  <!-- PRINT SYSTEM (ISOLATED CLEAN LAYOUT) -->
+  <div id="printDocument">
+    <div id="printContainer" class="print-box"></div>
   </div>
 
-  <footer>
-    <p>تم إعداد هذا النموذج التجريبي خصيصاً لمركز الشمس البيطري</p>
-  </footer>
-
   <script>
-    const sampleItems = [
-      { id: 1, name: "مضاد تنفسي تايلوزين", cat: "مضادات حيوية", price: 18000, stock: "12 علبة" },
-      { id: 2, name: "دوكسي سايكلين 50%", cat: "مضادات حيوية", price: 15000, stock: "25 كيس" },
-      { id: 3, name: "لقاح جمبورو عترة متوسطة", cat: "لقاحات", price: 22000, stock: "30 قنينة" },
-      { id: 4, name: "فيتامين AD3E مركز (1L)", cat: "فيتامينات", price: 14000, stock: "8 لتر" },
-      { id: 5, name: "مضاد كوكسيديا وتولترازوريل", cat: "طفيليات", price: 20000, stock: "15 عبوة" },
-      { id: 6, name: "منشط كبد وغسيل كلى", cat: "مكملات علاجية", price: 12000, stock: "19 عبوة" }
+    // Product Catalog Data
+    const products = [
+      { id: 1, name: "دوكسي سايكلين 50%", cat: "مضادات حيوية", price: 16000, stock: "24 كيس" },
+      { id: 2, name: "تايلوزين تارترات بيطري", cat: "علاجات تنفسية", price: 18500, stock: "9 علب" },
+      { id: 3, name: "لقاح نيوكاسل (كلون)", cat: "لقاحات مجمدة", price: 21000, stock: "35 فيال" },
+      { id: 4, name: "فيتامين AD3E مركز (1 لتر)", cat: "فيتامينات", price: 14000, stock: "16 لتر" },
+      { id: 5, name: "مضاد كوكسيديا وتولترازوريل", cat: "طفيليات", price: 22000, stock: "3 عبوات" },
+      { id: 6, name: "غسيل كلى ومنشط كبد", cat: "مكملات علاجية", price: 12500, stock: "18 عبوة" }
     ];
 
     let cart = [];
 
-    function renderItems() {
-      const container = document.getElementById('itemsContainer');
-      container.innerHTML = sampleItems.map(item => `
-        <div class="item-card" onclick="addToCart(${item.id})">
-          <div class="item-title">${item.name}</div>
-          <div class="item-cat">${item.cat}</div>
-          <div class="item-price">${item.price.toLocaleString()} د.ع</div>
-          <span class="stock-badge">المتوفر: ${item.stock}</span>
+    // SPA Router
+    function navigate(route, event) {
+      if (event) event.preventDefault();
+      
+      document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+      document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+
+      const targetLink = document.querySelector(`a[href="#${route}"]`);
+      const targetPage = document.getElementById(`page-${route}`);
+
+      if (targetLink && targetPage) {
+        targetLink.classList.add('active');
+        targetPage.classList.add('active');
+        window.location.hash = route;
+      }
+    }
+
+    // Render POS items
+    function initPOS() {
+      const container = document.getElementById('posItemsList');
+      container.innerHTML = products.map(item => `
+        <div class="item-glass" onclick="addToCart(${item.id})">
+          <div>
+            <div class="item-title">${item.name}</div>
+            <div class="item-cat">${item.cat}</div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+            <span class="item-price">${item.price.toLocaleString()} د.ع</span>
+            <span style="font-size:0.75rem; color:#64748b;">المتاح: ${item.stock}</span>
+          </div>
         </div>
       `).join('');
     }
 
+    // Cart Operations
     function addToCart(id) {
-      const item = sampleItems.find(i => i.id === id);
+      const prod = products.find(p => p.id === id);
       const existing = cart.find(c => c.id === id);
       if (existing) {
         existing.qty++;
       } else {
-        cart.push({ ...item, qty: 1 });
+        cart.push({ ...prod, qty: 1 });
       }
-      updateCartUI();
+      renderCart();
     }
 
-    function updateCartUI() {
-      const tbody = document.getElementById('cartItems');
-      const totalEl = document.getElementById('totalSum');
+    function removeCartItem(id) {
+      cart = cart.filter(c => c.id !== id);
+      renderCart();
+    }
+
+    function resetCart() {
+      cart = [];
+      renderCart();
+    }
+
+    function renderCart() {
+      const tbody = document.getElementById('cartTableBody');
+      const totalEl = document.getElementById('billGrandTotal');
+
       if (cart.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#999;">السلة فارغة</td></tr>';
-        totalEl.innerText = "0";
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#94a3b8; padding:30px;">الفاتورة فارغة</td></tr>';
+        totalEl.innerText = "0 د.ع";
         return;
       }
 
@@ -544,64 +642,166 @@
         total += itemTotal;
         return `
           <tr>
-            <td>${item.name}</td>
+            <td><strong>${item.name}</strong></td>
             <td>x${item.qty}</td>
-            <td>${itemTotal.toLocaleString()}</td>
+            <td style="font-family:'Plus Jakarta Sans'; font-weight:700;">${itemTotal.toLocaleString()} د.ع</td>
+            <td><button onclick="removeCartItem(${item.id})" style="border:none; background:none; cursor:pointer; color:#ef4444; font-size:1.1rem;">×</button></td>
           </tr>
         `;
       }).join('');
 
-      totalEl.innerText = total.toLocaleString();
+      totalEl.innerText = total.toLocaleString() + " د.ع";
     }
 
-    function clearCart() {
-      cart = [];
-      updateCartUI();
-    }
-
-    function printBill() {
-      if(cart.length === 0) {
-        alert("يرجى اختيار أدوية أولاً لإصدار الفاتورة");
+    // PRINT 1: Thermal/A4 Receipt
+    function printReceipt() {
+      if (cart.length === 0) {
+        alert("يرجى اختيار مادة واحدة على الأقل لطباعة الفاتورة");
         return;
       }
-      const customer = document.getElementById('custName').value || "مراجع نقدي";
-      alert(`جاري طباعة فاتورة باسم: ${customer} بمجموع: ${document.getElementById('totalSum').innerText} دينار`);
+
+      const client = document.getElementById('billCustomer').value || "مراجع نقدي";
+      const total = document.getElementById('billGrandTotal').innerText;
+      const invoiceNo = Math.floor(100000 + Math.random() * 900000);
+      const now = new Date().toLocaleString('ar-IQ');
+
+      const printHtml = `
+        <div class="print-header">
+          <div>
+            <h2 style="color:#047857;">مركز الشمس البيطري ☀️</h2>
+            <p><strong>د. زينب حرز الدين</strong> | أدوية، لقاحات، ومستلزمات دواجن</p>
+            <p style="font-size:0.85rem;">هاتف: 07866961140</p>
+          </div>
+          <div style="text-align:left; font-size:0.85rem;">
+            <p>رقم الإيصال: <strong>#INV-${invoiceNo}</strong></p>
+            <p>التاريخ: ${now}</p>
+          </div>
+        </div>
+
+        <p style="margin-bottom:12px; font-size:0.95rem;"><strong>اسم الزبون / الحقل:</strong> ${client}</p>
+
+        <table class="print-table">
+          <thead>
+            <tr>
+              <th>المادة</th>
+              <th>العدد</th>
+              <th>سعر الوحدة</th>
+              <th>المجموع</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${cart.map(i => `
+              <tr>
+                <td>${i.name}</td>
+                <td>${i.qty}</td>
+                <td>${i.price.toLocaleString()} د.ع</td>
+                <td>${(i.qty * i.price).toLocaleString()} د.ع</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+
+        <div style="text-align:left; font-size:1.2rem; font-weight:bold; margin-top:15px; color:#047857;">
+          المجموع الكلي: ${total}
+        </div>
+
+        <div style="margin-top:40px; display:flex; justify-content:space-between; font-size:0.85rem; border-top:1px solid #ccc; padding-top:10px;">
+          <p>شكراً لتعاملكم مع مركز الشمس البيطري</p>
+          <p>توقيع وختم المركز: _______________</p>
+        </div>
+      `;
+
+      const container = document.getElementById('printContainer');
+      container.innerHTML = printHtml;
+
       window.print();
     }
 
-    function switchTab(tab) {
-      document.querySelectorAll('.tab-btn, .nav-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    // PRINT 2: Medical & Necropsy Lab Report
+    function printMedicalReport() {
+      const owner = document.getElementById('lpOwner').value;
+      const breed = document.getElementById('lpBreed').value;
+      const age = document.getElementById('lpAge').value;
+      const mort = document.getElementById('lpMortality').value;
+      const lesions = document.getElementById('lpLesions').value;
+      const diag = document.getElementById('lpDiag').value;
+      const therapy = document.getElementById('lpTherapy').value;
+      const reportId = Math.floor(1000 + Math.random() * 9000);
+      const dateStr = new Date().toLocaleDateString('ar-IQ');
 
-      if (tab === 'pos') {
-        document.getElementById('posTab').classList.add('active');
-        event.currentTarget.classList.add('active');
-      } else if (tab === 'lab') {
-        document.getElementById('labTab').classList.add('active');
-        event.currentTarget.classList.add('active');
-      } else if (tab === 'stock') {
-        document.getElementById('stockTab').classList.add('active');
-        event.currentTarget.classList.add('active');
-      }
+      const printHtml = `
+        <div class="print-header">
+          <div>
+            <h2 style="color:#047857;">مركز الشمس البيطري ☀️</h2>
+            <p><strong>د. زينب حرز الدين</strong> | رعاية بيطرية متخصصة للدواجن والطيور</p>
+            <p style="font-size:0.85rem;">هاتف: 07866961140 | تشريح • فحوصات مختبرية • لقاحات</p>
+          </div>
+          <div style="text-align:left; font-size:0.85rem;">
+            <p>رقم التقرير: <strong>#REP-${reportId}</strong></p>
+            <p>التاريخ: ${dateStr}</p>
+          </div>
+        </div>
+
+        <h3 style="text-align:center; text-decoration:underline; margin:16px 0;">تقرير فحص سريري وتشريح قطيع دواجن</h3>
+
+        <table class="print-table">
+          <tr>
+            <td><strong>المربي / الحقل:</strong> ${owner}</td>
+            <td><strong>سلالة القطيع:</strong> ${breed}</td>
+          </tr>
+          <tr>
+            <td><strong>العمر والعدد:</strong> ${age}</td>
+            <td><strong>الهلاكات اليومية:</strong> ${mort}</td>
+          </tr>
+        </table>
+
+        <div style="margin:16px 0;">
+          <h4 style="color:#047857; margin-bottom:6px;">الآفات التشريحية العيانية (Post-Mortem Findings):</h4>
+          <div style="background:#f8fafc; padding:10px; border:1px solid #cbd5e1; font-size:0.9rem; line-height:1.6;">
+            ${lesions}
+          </div>
+        </div>
+
+        <div style="margin:16px 0;">
+          <h4 style="color:#047857; margin-bottom:6px;">التشخيص البيطري (Diagnosis):</h4>
+          <div style="background:#f0fdf4; padding:10px; border:1px solid #86efac; font-weight:bold; font-size:0.95rem;">
+            ${diag}
+          </div>
+        </div>
+
+        <div style="margin:16px 0;">
+          <h4 style="color:#047857; margin-bottom:6px;">البرنامج العلاجي الموصى به (Rx):</h4>
+          <div style="background:#f8fafc; padding:10px; border:1px solid #cbd5e1; font-size:0.9rem; white-space:pre-line; line-height:1.6;">
+            ${therapy}
+          </div>
+        </div>
+
+        <div style="margin-top:50px; display:flex; justify-content:space-between; align-items:center;">
+          <div style="font-size:0.9rem;">ختم المركز الرسمي</div>
+          <div style="text-align:center;">
+            <p>طبيب المركز المسؤول</p>
+            <p style="margin-top:10px;"><strong>د. زينب حرز الدين</strong></p>
+          </div>
+        </div>
+      `;
+
+      const container = document.getElementById('printContainer');
+      container.innerHTML = printHtml;
+
+      window.print();
     }
 
-    function generateReport() {
-      document.getElementById('repDate').innerText = new Date().toLocaleDateString('ar-IQ');
-      document.getElementById('repId').innerText = Math.floor(1000 + Math.random() * 9000);
-      document.getElementById('rOwner').innerText = document.getElementById('farmOwner').value;
-      document.getElementById('rBird').innerText = document.getElementById('birdType').value;
-      document.getElementById('rAge').innerText = document.getElementById('flockAge').value;
-      document.getElementById('rMort').innerText = document.getElementById('mortality').value;
-      document.getElementById('rLesions').innerText = document.getElementById('lesions').value;
-      document.getElementById('rDiag').innerText = document.getElementById('diagnosis').value;
-      document.getElementById('rTreat').innerText = document.getElementById('treatment').value;
+    // Hash change routing on browser back/forward
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.replace('#', '') || 'pos';
+      navigate(hash);
+    });
 
-      const printArea = document.getElementById('printArea');
-      printArea.style.display = 'block';
-      printArea.scrollIntoView({ behavior: 'smooth' });
+    // Initial load
+    initPOS();
+    if (window.location.hash) {
+      navigate(window.location.hash.replace('#', ''));
     }
-
-    renderItems();
   </script>
 </body>
 </html>
