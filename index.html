@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="By:Komail Nabeel / B.M.T Of Anesthesia & ICU / Web development">
   <title>نظام مركز الشمس البيطري</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -309,6 +310,47 @@
     .badge-warn { background: #fef3c7; color: #92400e; }
     .badge-danger { background: #fee2e2; color: #991b1b; }
 
+    /* Footer Credits (Glassmorphic) */
+    footer {
+      max-width: 1200px;
+      margin: 0 auto 20px auto;
+      padding: 16px 20px;
+      width: 100%;
+    }
+
+    .footer-content {
+      background: var(--glass-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .footer-copy {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .footer-developer {
+      font-family: 'Plus Jakarta Sans', 'Tajawal', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--brand-primary);
+      letter-spacing: 0.2px;
+      direction: ltr;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
     /* Print Document Container */
     #printDocument {
       display: none;
@@ -551,6 +593,18 @@
       </div>
     </section>
   </main>
+
+  <!-- Glass Footer with Developer Attribution -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-copy">
+        نظام إدارة العيادات والمذاخر البيطرية المتخصص • مركز الشمس البيطري
+      </div>
+      <div class="footer-developer">
+        By:Komail Nabeel / B.M.T Of Anesthesia & ICU / Web development
+      </div>
+    </div>
+  </footer>
 
   <!-- PRINT SYSTEM (ISOLATED CLEAN LAYOUT) -->
   <div id="printDocument">
